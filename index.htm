@@ -3,48 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arpan's Personal Realm</title>
+    <title>Arpan's Realm | Creative Portfolio</title>
 
     <!-- ===== MINECRAFT PIXEL FONTS & ICONS ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Three.js for 3D Interactive World Engine -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Three.js for 3D Interactive Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
-        /* ===== MINECRAFT DIMENSIONAL THEMING ===== */
+        /* ===== MODERN MINECRAFT PREMIUM THEME ===== */
         :root {
-            --header-height: 3.5rem;
+            --header-height: 4rem;
             
-            /* Minecraft Palette */
-            --mc-dirt-dark: #2c1d0e;
-            --mc-dirt-light: #573d26;
-            --mc-stone: #555555;
-            --mc-stone-dark: #2a2a2a;
-            --mc-green-grass: #4a7522;
+            /* Enhanced Minecraft Color Palette */
+            --mc-dirt-dark: #1b120c;
+            --mc-stone: #2b2b2e;
+            --mc-green-grass: #4e8529;
             --mc-green-bright: #55ff55;
             --mc-gold: #ffaa00;
-            --mc-yellow: #ffff55;
-            --mc-portal-purple: #8b00ff;
-            --mc-end-purple: #1b0a2a;
+            --mc-gold-light: #ffea79;
+            --mc-diamond: #55ffff;
+            --mc-nether-red: #aa0000;
+            --mc-purple: #a832fc;
+
+            /* Glassmorphic UI colors */
+            --panel-bg: rgba(18, 18, 24, 0.75);
+            --panel-border: rgba(255, 255, 255, 0.12);
+            --mc-border-dark: #000000;
 
             /* Fonts */
             --font-pixel: 'Press Start 2P', cursive;
+            --font-sans: 'Space Grotesk', sans-serif;
             --font-mc-alt: 'VT323', monospace;
 
-            /* Spacing */
-            --mb-2: 1rem;
-            --mb-4: 2rem;
-            --mb-5: 2.5rem;
-            --mb-6: 3rem;
             --z-fixed: 100;
         }
 
         *, ::before, ::after {
             box-sizing: border-box;
-            image-rendering: pixelated;
         }
 
         html {
@@ -53,15 +52,17 @@
 
         body {
             margin: var(--header-height) 0 0 0;
-            font-family: var(--font-pixel);
-            font-size: 0.75rem;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
             line-height: 1.6;
-            color: #ffffff;
-            background-color: #0b0b0b;
+            color: #f0f0f5;
+            background-color: #08080c;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, p {
+        h1, h2, h3 {
+            font-family: var(--font-pixel);
+            line-height: 1.3;
             margin: 0;
             text-shadow: 2px 2px 0px #000;
         }
@@ -77,12 +78,6 @@
             color: inherit;
         }
 
-        img, video {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
         /* ===== 3D CANVAS BACKGROUND ENGINE ===== */
         #world-canvas {
             position: fixed;
@@ -94,128 +89,146 @@
             z-index: 1;
         }
 
-        /* ===== REUSABLE UI COMPONENTS ===== */
+        /* ===== REUSABLE UI & GLASS PANELS ===== */
+        .glass-card {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 3px solid #000;
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.15),
+                0 12px 30px rgba(0,0,0,0.7);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
         .section-title {
             position: relative;
-            font-size: 1.1rem;
-            color: var(--mc-yellow);
-            margin-top: var(--mb-2);
-            margin-bottom: var(--mb-6);
+            font-size: 1.15rem;
+            color: var(--mc-gold-light);
+            margin-bottom: 3.5rem;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 3px 3px 0 #000;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 0 #000, 0 0 12px rgba(255,170,0,0.4);
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 140px;
-            height: 6px;
-            background-color: var(--mc-gold);
-            margin: 0.75rem auto 0;
-            border: 2px solid #000;
-            box-shadow: inset 0 2px 0 #fff;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--mc-gold), transparent);
+            margin: 0.8rem auto 0;
+            box-shadow: 0 2px 0 #000;
         }
 
         .section {
-            padding: 4rem 1rem 3rem;
+            padding: 6rem 1.5rem 5rem;
             position: relative;
-            border-bottom: 6px solid #000;
             z-index: 2;
         }
 
         .bd-grid {
-            max-width: 1024px;
+            max-width: 1100px;
             display: grid;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Minecraft Styled Button */
+        /* Deluxe Minecraft Style Button */
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             position: relative;
-            background-color: #8b8b8b;
+            background: linear-gradient(180deg, #787878 0%, #4a4a4a 100%);
             color: #ffffff;
-            padding: 0.85rem 1.8rem;
+            padding: 1rem 2rem;
             font-family: var(--font-pixel);
             font-size: 0.7rem;
             text-transform: uppercase;
             text-align: center;
             border: 3px solid #000000;
             box-shadow: 
-                inset -3px -3px 0px 0px #4a4a4a,
-                inset 3px 3px 0px 0px #ffffff;
+                inset -3px -3px 0px 0px #2a2a2a,
+                inset 3px 3px 0px 0px #aaaaaa,
+                0 6px 15px rgba(0,0,0,0.5);
             cursor: pointer;
             text-shadow: 2px 2px 0px #000000;
             user-select: none;
-            transition: filter 0.1s;
+            transition: all 0.15s ease;
+            border-radius: 2px;
         }
 
         .button:hover {
-            background-color: #70b036;
-            color: #ffffa0;
+            background: linear-gradient(180deg, #62b32b 0%, #3a7515 100%);
+            color: #ffffaa;
+            transform: translateY(-2px);
             box-shadow: 
-                inset -3px -3px 0px 0px #38581b,
-                inset 3px 3px 0px 0px #a4e659;
+                inset -3px -3px 0px 0px #224d0c,
+                inset 3px 3px 0px 0px #97eb5b,
+                0 10px 20px rgba(85,255,85,0.25);
         }
 
         .button:active {
+            transform: translateY(1px);
             box-shadow: 
-                inset 3px 3px 0px 0px #222222,
-                inset -3px -3px 0px 0px #888888;
-            padding: 0.9rem 1.75rem 0.8rem 1.85rem;
+                inset 3px 3px 0px 0px #1a3307,
+                inset -3px -3px 0px 0px #529424;
         }
 
-        /* Minecraft Painting Frame Container */
-        .mc-painting-frame {
+        /* Minecraft Frame Container */
+        .mc-item-frame {
             position: relative;
-            background: #462c16;
-            border: 8px solid #6e4623;
+            background: #2b1a0e;
+            border: 6px solid #4d2f19;
             box-shadow: 
-                0 0 0 4px #000,
-                inset -4px -4px 0 #28170a,
-                inset 4px 4px 0 #9c6738,
-                0 10px 20px rgba(0,0,0,0.8);
-            padding: 8px;
-            display: inline-block;
+                0 0 0 3px #000,
+                inset -3px -3px 0 #140b05,
+                inset 3px 3px 0 #7a4d29,
+                0 12px 25px rgba(0,0,0,0.8);
+            padding: 6px;
             border-radius: 4px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .mc-painting-inner {
-            border: 3px solid #000;
+        .mc-item-frame:hover {
+            transform: scale(1.02) translateY(-4px);
+        }
+
+        .mc-item-inner {
+            border: 2px solid #000;
             overflow: hidden;
-            background-color: #000;
+            background-color: #0d0d12;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 2px;
         }
 
-        /* Responsive ratios for media within Minecraft Paintings */
-        .mc-painting-inner img,
-        .mc-painting-inner video {
+        .mc-item-inner img,
+        .mc-item-inner video {
             width: 100%;
             height: auto;
-            max-height: 400px;
-            object-fit: contain;
+            max-height: 380px;
+            object-fit: cover;
             display: block;
         }
 
-        /* ===== HEADER / HOTBAR NAVIGATION ===== */
+        /* ===== HEADER / NAVIGATION HOTBAR ===== */
         .l-header {
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
             z-index: var(--z-fixed);
-            background-color: rgba(20, 20, 20, 0.85);
-            border-bottom: 4px solid #000;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            background-color: rgba(10, 10, 14, 0.88);
+            border-bottom: 3px solid #000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
         }
 
         .nav {
@@ -223,279 +236,300 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
 
         .nav__logo {
-            color: var(--mc-yellow);
-            font-size: 0.85rem;
+            color: var(--mc-gold-light);
+            font-family: var(--font-pixel);
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-shadow: 2px 2px 0 #000;
+        }
+
+        .nav__logo i {
+            font-size: 1.2rem;
+            color: var(--mc-diamond);
         }
 
         .nav__list {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
         .nav__link {
-            color: #aaaaaa;
+            font-family: var(--font-pixel);
+            color: #bbbbcc;
             font-size: 0.6rem;
             text-transform: uppercase;
-            padding: 6px 10px;
+            padding: 8px 14px;
             border: 2px solid transparent;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(255,255,255,0.03);
             border-radius: 2px;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .nav__link:hover {
             color: #ffffff;
-            background-color: #444;
-            border: 2px solid #888;
+            background-color: rgba(255,255,255,0.1);
+            border: 2px solid #666;
+            transform: translateY(-1px);
         }
 
         .active-link {
-            color: var(--mc-yellow) !important;
+            color: var(--mc-gold-light) !important;
             border: 2px solid var(--mc-gold) !important;
-            background-color: #5c3a1e !important;
-            box-shadow: inset 0 0 5px #000;
+            background: linear-gradient(180deg, #4d2b10 0%, #2a1506 100%) !important;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(255,170,0,0.3);
         }
 
         .nav__toggle {
             color: #ffffff;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             display: none;
         }
 
-        /* ===== SECTIONS SETUP & TRANSLUCENCE FOR 3D WORLD ===== */
-        #home, #about, #skills, #work, #contact {
-            background: transparent;
+        /* ===== HERO SECTION ===== */
+        .home {
+            padding: 7rem 1.5rem 4rem;
+            row-gap: 2rem;
+            align-items: center;
         }
 
-        .home {
-            position: relative;
-            row-gap: 3rem;
-            padding: 5rem 1rem 4rem;
+        .home__subtitle-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(170, 0, 0, 0.25);
+            color: #ff6666;
+            padding: 6px 12px;
+            font-family: var(--font-pixel);
+            font-size: 0.55rem;
+            border: 2px solid var(--mc-nether-red);
+            border-radius: 2px;
+            margin-bottom: 1.2rem;
+            box-shadow: 2px 2px 0 #000;
         }
 
         .home__title {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            margin-bottom: var(--mb-4);
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
             color: #fff;
         }
 
         .home__title-color {
             color: var(--mc-gold);
-            text-shadow: 2px 2px 0 #553300;
+            text-shadow: 3px 3px 0 #3a2000, 0 0 15px rgba(255,170,0,0.5);
         }
 
-        .home__subtitle-tag {
-            display: inline-block;
-            background: #4a0e0e;
-            color: #ff5555;
-            padding: 4px 8px;
-            font-size: 0.55rem;
-            border: 2px solid #ff0000;
-            margin-bottom: 1rem;
-            box-shadow: 2px 2px 0 #000;
+        .home__description {
+            font-size: 1.05rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            max-width: 540px;
         }
 
         .home__social {
             display: flex;
             flex-direction: row;
             gap: 1rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-top: 1.8rem;
+            margin-bottom: 1.8rem;
         }
 
         .home__social-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
-            background-color: #333;
+            width: 44px;
+            height: 44px;
+            background: #1e1e26;
             border: 3px solid #000;
-            box-shadow: inset -2px -2px 0 #111, inset 2px 2px 0 #666;
-            color: var(--mc-yellow);
+            box-shadow: inset -2px -2px 0 #0d0d12, inset 2px 2px 0 #444455;
+            color: var(--mc-gold-light);
             font-size: 1.4rem;
+            transition: all 0.2s ease;
         }
 
         .home__social-icon:hover {
             background-color: var(--mc-gold);
             color: #000;
             transform: translate(-2px, -2px);
+            box-shadow: inset -2px -2px 0 #aa5500, inset 2px 2px 0 #ffea79, 0 4px 10px rgba(255,170,0,0.4);
         }
 
+        /* ===== ABOUT SECTION ===== */
         .about__container {
-            row-gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .about__text-box {
+            padding: 2rem;
         }
 
         .about__subtitle {
-            font-size: 1rem;
-            color: var(--mc-gold);
-            margin-bottom: var(--mb-2);
+            font-size: 1.1rem;
+            color: var(--mc-gold-light);
+            margin-bottom: 1rem;
         }
 
         .about__text {
             font-family: var(--font-mc-alt);
-            font-size: 1.35rem;
-            line-height: 1.4;
-            color: #dddddd;
-            background: rgba(0,0,0,0.75);
-            padding: 1.25rem;
-            border: 3px solid #000;
-            box-shadow: inset 0 0 10px #000;
+            font-size: 1.45rem;
+            line-height: 1.45;
+            color: #e2e2ec;
             text-shadow: 1px 1px 0 #000;
         }
 
+        /* ===== SKILLS SECTION ===== */
         .skills__container {
-            row-gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .skills__box {
+            padding: 2rem;
         }
 
         .skills__subtitle {
-            font-size: 1rem;
-            color: var(--mc-yellow);
-            margin-bottom: var(--mb-2);
+            font-size: 1.1rem;
+            color: var(--mc-diamond);
+            margin-bottom: 1rem;
         }
 
         .skills__text {
-            font-family: var(--font-mc-alt);
-            font-size: 1.25rem;
-            color: #e0b0b0;
-            margin-bottom: var(--mb-4);
-            line-height: 1.3;
-            background: rgba(0,0,0,0.65);
-            padding: 10px;
-            border: 2px solid #000;
+            font-size: 1rem;
+            color: #bbbbcc;
+            margin-bottom: 2rem;
         }
 
         .skills__data {
-            background: rgba(30, 10, 10, 0.85);
-            border: 3px solid #000;
-            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #000;
+            padding: 1rem;
             margin-bottom: 1.2rem;
-            box-shadow: inset -2px -2px 0 #0f0505, inset 2px 2px 0 #4a1515;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
         }
 
         .skills__names {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
 
         .skills__name {
+            font-family: var(--font-pixel);
             font-size: 0.65rem;
             color: #fff;
             text-transform: uppercase;
         }
 
         .skills__icon {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--mc-gold);
-            margin-right: 0.5rem;
+            margin-right: 0.6rem;
         }
 
         .skills__percentage {
+            font-family: var(--font-pixel);
             font-size: 0.6rem;
             color: var(--mc-green-bright);
         }
 
         .skills__bar-container {
             width: 100%;
-            height: 14px;
-            background-color: #000;
-            border: 2px solid #555;
+            height: 16px;
+            background-color: #111;
+            border: 2px solid #333;
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .skills__bar {
             height: 100%;
-            background: linear-gradient(180deg, #ffaa00 0%, #aa5500 100%);
-            box-shadow: inset 0 2px 0 #ffdd55;
+            background: linear-gradient(90deg, #aa5500 0%, #ffaa00 70%, #ffff55 100%);
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.4);
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .skills__html { width: 95%; }
-        .skills__css { width: 85%; }
-        .skills__js { width: 65%; }
-        .skills__ux { width: 85%; }
+        .skills__ae { width: 95%; }
+        .skills__ps { width: 85%; }
+        .skills__vscode { width: 75%; }
+        .skills__ux { width: 88%; }
 
+        /* ===== WORK SECTION ===== */
         .work__container {
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .work__card {
-            background-color: rgba(25, 19, 37, 0.9);
-            border: 4px solid #000;
-            box-shadow: 
-                inset -3px -3px 0 #0a0710,
-                inset 3px 3px 0 #322547,
-                0 6px 0 rgba(0,0,0,0.5);
-            padding: 12px;
+            padding: 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .work__card-title {
+            font-family: var(--font-pixel);
             font-size: 0.65rem;
-            color: var(--mc-yellow);
-            margin-top: 8px;
-            margin-bottom: 4px;
+            color: var(--mc-gold-light);
+            margin-top: 12px;
             text-align: center;
+            text-shadow: 1px 1px 0 #000;
         }
 
+        /* ===== CONTACT SECTION ===== */
         .contact__container {
             justify-content: center;
         }
 
         .contact__form {
             width: 100%;
-            max-width: 500px;
-            background: rgba(26, 10, 38, 0.9);
-            border: 4px solid #000;
-            box-shadow: inset -4px -4px 0 #0a0210, inset 4px 4px 0 #3a1554;
-            padding: 1.5rem;
+            max-width: 580px;
+            padding: 2.5rem;
         }
 
         .contact__field-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact__label {
             display: block;
+            font-family: var(--font-pixel);
             font-size: 0.6rem;
-            color: var(--mc-yellow);
-            margin-bottom: 0.4rem;
+            color: var(--mc-gold-light);
+            margin-bottom: 0.6rem;
         }
 
         .contact__input {
             width: 100%;
-            font-family: var(--font-pixel);
-            font-size: 0.65rem;
-            padding: 0.75rem;
-            background-color: #0b0212;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            padding: 0.9rem 1rem;
+            background-color: rgba(10, 10, 15, 0.8);
             color: #ffffff;
             border: 3px solid #000000;
-            box-shadow: inset 2px 2px 0 #000, inset -2px -2px 0 #2d0e40;
+            box-shadow: inset 2px 2px 0 #000, inset -2px -2px 0 rgba(255,255,255,0.05);
             outline: none;
+            border-radius: 2px;
+            transition: border-color 0.2s ease;
         }
 
         .contact__input:focus {
             border-color: var(--mc-gold);
-            background-color: #190529;
+            background-color: rgba(20, 20, 30, 0.9);
         }
 
         textarea.contact__input {
             resize: vertical;
-            min-height: 120px;
+            min-height: 130px;
         }
 
         .contact__button {
@@ -503,10 +537,11 @@
             margin-top: 0.5rem;
         }
 
+        /* ===== FOOTER ===== */
         .footer {
-            background-color: #080808;
+            background-color: #050508;
             border-top: 4px solid #000;
-            padding: 2.5rem 0;
+            padding: 3rem 0;
             text-align: center;
             position: relative;
             z-index: 2;
@@ -515,35 +550,39 @@
         .footer__title {
             font-size: 1.2rem;
             color: var(--mc-gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .footer__social {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
         }
 
         .footer__icon {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #fff;
-            background: #181818;
+            background: #14141a;
             border: 2px solid #000;
-            padding: 8px;
+            padding: 10px;
             display: inline-flex;
+            transition: all 0.2s ease;
         }
 
         .footer__icon:hover {
-            color: var(--mc-yellow);
-            background: var(--mc-stone-dark);
+            color: var(--mc-gold-light);
+            background: var(--mc-stone);
+            transform: translateY(-2px);
         }
 
         .footer__copy {
+            font-family: var(--font-pixel);
             font-size: 0.55rem;
-            color: #777777;
+            color: #666677;
         }
 
+        /* ===== RESPONSIVE STYLES ===== */
         @media screen and (max-width: 767px) {
             .nav__toggle {
                 display: block;
@@ -552,21 +591,21 @@
                 position: fixed;
                 top: var(--header-height);
                 right: -100%;
-                width: 75%;
+                width: 78%;
                 height: calc(100vh - var(--header-height));
-                padding: 2rem 1.5rem;
-                background-color: rgba(15, 15, 15, 0.98);
+                padding: 2.5rem 1.5rem;
+                background-color: rgba(10, 10, 14, 0.98);
                 border-left: 4px solid #000;
-                transition: 0.3s steps(6);
+                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
             .nav__list {
                 flex-direction: column;
-                gap: 1.2rem;
+                gap: 1rem;
             }
             .nav__link {
                 display: block;
-                font-size: 0.75rem;
-                padding: 12px;
+                font-size: 0.7rem;
+                padding: 14px;
                 text-align: center;
             }
         }
@@ -575,45 +614,16 @@
             right: 0 !important;
         }
 
-        @media screen and (min-width: 576px) {
+        @media screen and (min-width: 768px) {
             .home {
-                padding: 6rem 0 3rem;
+                grid-template-columns: 1.2fr 0.8fr;
+                padding: 9rem 0 6rem;
             }
             .about__container {
-                grid-template-columns: repeat(2, 1fr);
-                align-items: center;
-                text-align: left;
-            }
-            .work__container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media screen and (min-width: 768px) {
-            .nav {
-                height: calc(var(--header-height) + 1rem);
-            }
-            .nav__list {
-                flex-direction: row;
-            }
-            .nav__toggle {
-                display: none;
-            }
-            .home {
-                padding: 8rem 0 5rem;
-                grid-template-columns: 1.2fr 0.8fr;
-                align-items: center;
-            }
-            .home__img {
-                justify-self: end;
+                grid-template-columns: 0.8fr 1.2fr;
             }
             .skills__container {
                 grid-template-columns: 1.2fr 0.8fr;
-                column-gap: 2rem;
-                align-items: center;
-            }
-            .work__container {
-                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
@@ -626,7 +636,7 @@
     <header class="l-header">
         <nav class="nav bd-grid">
             <div>
-                <a href="#home" class="nav__logo">⚔️ Arpan's Realm</a>
+                <a href="#home" class="nav__logo"><i class='bx bxs-cube-alt'></i> ARPAN'S REALM</a>
             </div>
 
             <div class="nav__menu" id="nav-menu">
@@ -635,7 +645,7 @@
                     <li class="nav__item"><a href="#about" class="nav__link">Caves</a></li>
                     <li class="nav__item"><a href="#skills" class="nav__link">Nether</a></li>
                     <li class="nav__item"><a href="#work" class="nav__link">The End</a></li>
-                    <li class="nav__item"><a href="#contact" class="nav__link">Portal Core</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Beacon</a></li>
                 </ul>
             </div>
 
@@ -649,10 +659,11 @@
         <!-- ===== HOME SECTION (OVERWORLD) ===== -->
         <section class="home bd-grid" id="home">
             <div class="home__data">
-                <span class="home__subtitle-tag">Level 99 Creator</span>
-                <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Arpan</span><br>yes "The G.O.A.T"</h1>
+                <span class="home__subtitle-tag"><i class='bx bxs-zap'></i> LVL 99 DIGITAL CREATOR</span>
+                <h1 class="home__title">Hi,<br>I'm <span class="home__title-color">Arpan</span></h1>
+                <p class="home__description">A visionary digital artist crafting elite video edits, high-impact motion graphics, dynamic visual storytelling, and next-gen creative experiences.</p>
 
-                <a href="#contact" class="button">Explore My Realm</a>
+                <a href="#work" class="button"><i class='bx bxs-compass'></i> Explore Inventory</a>
 
                 <div class="home__social">
                     <a href="https://www.instagram.com/sheikh_4rpn/" class="home__social-icon" target="_blank" title="Instagram"><i class='bx bxl-instagram'></i></a>
@@ -662,9 +673,9 @@
             </div>
 
             <div class="home__img">
-                <div class="mc-painting-frame">
-                    <div class="mc-painting-inner">
-                        <img src="arpankk.png" alt="Arpan Avatar">
+                <div class="mc-item-frame">
+                    <div class="mc-item-inner">
+                        <img src="arpankk.png" alt="Arpan Avatar" onerror="this.src='https://placehold.co/400x400/222/ffa?text=Arpan+Avatar'">
                     </div>
                 </div>
             </div>
@@ -676,52 +687,52 @@
 
             <div class="about__container bd-grid">
                 <div class="about__img">
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <img src="arpany.jpg" alt="Arpan Profile">
+                    <div class="mc-item-frame">
+                        <div class="mc-item-inner">
+                            <img src="arpany.jpg" alt="Arpan Profile" onerror="this.src='https://placehold.co/400x400/333/fff?text=Arpan+Profile'">
                         </div>
                     </div>
                 </div>
                 
-                <div>
-                    <h2 class="about__subtitle">I'am Arpan</h2>
-                    <p class="about__text">A digital native operating at the intersection of high-concept design and raw tech proficiency, I architect immersive visual experiences that hit different. From high-octane freestyle video and photo edits dialed into cyberpunk perfection to slick, ultra-responsive web interfaces and high-impact pitch decks, my entire workflow is built around pushing aesthetic boundaries. I don't just create content—I craft digital narratives with main-character energy, turning raw pixels, code, and creative vision into clean, elite-tier deliverables. Driven by relentless curiosity, technical precision, and pure artistic flow, I'm constantly upgrading my stack to transform abstract ideas into unforgettable, future-ready realities that completely override the baseline.</p>           
+                <div class="glass-card about__text-box">
+                    <h3 class="about__subtitle">Architect of Digital Visuals</h3>
+                    <p class="about__text">Operating at the intersection of high-concept design and technical mastery, I build immersive visual experiences. From freestyle video edits to clean UI layouts, my workflow is engineered around aesthetic perfection, high-impact energy, and pushing raw ideas into refined visual masterpieces.</p>           
                 </div>                                   
             </div>
         </section>
 
         <!-- ===== SKILLS SECTION (THE NETHER) ===== -->
         <section class="skills section" id="skills">
-            <h2 class="section-title">Nether Stats & Skill Tree</h2>
+            <h2 class="section-title">Nether Skill Tree</h2>
 
             <div class="skills__container bd-grid">          
-                <div>
-                    <h2 class="skills__subtitle">Skill Tree</h2>
-                    <p class="skills__text">As a versatile multimedia specialist, I possess strong skills in video and photo editing, PowerPoint presentation creation, and graphic design. My creative flair and technical proficiency enable me to produce visually captivating and impactful content tailored to diverse needs. Whether it's editing videos, enhancing photos, crafting compelling presentations, or designing stunning graphics, I am dedicated to achieving excellence and exceeding expectations.</p>
+                <div class="glass-card skills__box">
+                    <h3 class="skills__subtitle">Technical Expertise</h3>
+                    <p class="skills__text">Specialized software proficiency across video post-production, visual effects, raster manipulation, and front-end design systems.</p>
                     
                     <div class="skills__data">
                         <div class="skills__names">
                             <div>
-                                <i class='bx bxl-adobe skills__icon'></i>
+                                <i class='bx bxs-video skills__icon'></i>
                                 <span class="skills__name">After Effects</span>
                             </div>
                             <span class="skills__percentage">95%</span>
                         </div>
                         <div class="skills__bar-container">
-                            <div class="skills__bar skills__html"></div>
+                            <div class="skills__bar skills__ae"></div>
                         </div>
                     </div>
 
                     <div class="skills__data">
                         <div class="skills__names">
                             <div>
-                                <i class='bx bxl-photoshop skills__icon'></i>
+                                <i class='bx bxs-image skills__icon'></i>
                                 <span class="skills__name">Photoshop</span>
                             </div>
                             <span class="skills__percentage">85%</span>
                         </div>
                         <div class="skills__bar-container">
-                            <div class="skills__bar skills__css"></div>
+                            <div class="skills__bar skills__ps"></div>
                         </div>
                     </div>
 
@@ -729,22 +740,22 @@
                         <div class="skills__names">
                             <div>
                                 <i class='bx bxs-code-alt skills__icon'></i>
-                                <span class="skills__name">VS Code</span>
+                                <span class="skills__name">VS Code / Web Development</span>
                             </div>
-                            <span class="skills__percentage">65%</span>
+                            <span class="skills__percentage">75%</span>
                         </div>
                         <div class="skills__bar-container">
-                            <div class="skills__bar skills__js"></div>
+                            <div class="skills__bar skills__vscode"></div>
                         </div>
                     </div>
 
                     <div class="skills__data">
                         <div class="skills__names">
                             <div>
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">UX/UI</span>
+                                <i class='bx bxs-palette skills__icon'></i>
+                                <span class="skills__name">UI / UX Design</span>
                             </div>
-                            <span class="skills__percentage">85%</span>
+                            <span class="skills__percentage">88%</span>
                         </div>
                         <div class="skills__bar-container">
                             <div class="skills__bar skills__ux"></div>
@@ -752,10 +763,10 @@
                     </div>
                 </div>
                 
-                <div style="justify-self: center;">              
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <img src="ig.jpg" alt="Skills showcase" class="skills__img">
+                <div style="justify-self: center; width: 100%;">              
+                    <div class="mc-item-frame">
+                        <div class="mc-item-inner">
+                            <img src="ig.jpg" alt="Skills Showcase" onerror="this.src='https://placehold.co/400x500/111/ffaa00?text=Skill+Showcase'">
                         </div>
                     </div>
                 </div>
@@ -767,80 +778,80 @@
             <h2 class="section-title">End Inventory & Artifacts</h2>
 
             <div class="work__container bd-grid">
-                <div class="work__card">
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <img src="spider.jpg" alt="Spider Edit">
+                <div class="glass-card work__card">
+                    <div class="mc-item-frame" style="width: 100%;">
+                        <div class="mc-item-inner">
+                            <img src="spider.jpg" alt="Spider Edit" onerror="this.src='https://placehold.co/400x400/222/fff?text=Spider+Edit'">
                         </div>
                     </div>
-                    <span class="work__card-title">Photo Edit</span>
+                    <span class="work__card-title">Concept Edit</span>
                 </div>
 
-                <div class="work__card">
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <video autoplay muted loop playsinline>
+                <div class="glass-card work__card">
+                    <div class="mc-item-frame" style="width: 100%;">
+                        <div class="mc-item-inner">
+                            <video autoplay muted loop playsinline poster="https://placehold.co/400x400/111/ff5555?text=Short+Edit">
                                 <source src="ghjk.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
-                    <span class="work__card-title">Short Edit</span>
+                    <span class="work__card-title">Short Form Edit</span>
                 </div>
 
-                <div class="work__card">
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <video autoplay muted loop playsinline>
+                <div class="glass-card work__card">
+                    <div class="mc-item-frame" style="width: 100%;">
+                        <div class="mc-item-inner">
+                            <video autoplay muted loop playsinline poster="https://placehold.co/400x400/111/ffaa00?text=Clipchamp+Cut">
                                 <source src="Untitled video - Made with Clipchamp.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
-                    <span class="work__card-title">Clipchamp Cut</span>
+                    <span class="work__card-title">Motion Cut</span>
                 </div>
 
-                <div class="work__card">
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <video autoplay muted loop playsinline>
+                <div class="glass-card work__card">
+                    <div class="mc-item-frame" style="width: 100%;">
+                        <div class="mc-item-inner">
+                            <video autoplay muted loop playsinline poster="https://placehold.co/400x400/111/55ffff?text=VFX+Edit">
                                 <source src="edit.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
-                    <span class="work__card-title">VFX Edit</span>
+                    <span class="work__card-title">VFX Master</span>
                 </div>
 
-                <div class="work__card">
-                    <div class="mc-painting-frame">
-                        <div class="mc-painting-inner">
-                            <video autoplay muted loop playsinline>
+                <div class="glass-card work__card">
+                    <div class="mc-item-frame" style="width: 100%;">
+                        <div class="mc-item-inner">
+                            <video autoplay muted loop playsinline poster="https://placehold.co/400x400/111/a832fc?text=Final+Master">
                                 <source src="final.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
-                    <span class="work__card-title">Final Master</span>
+                    <span class="work__card-title">Final Cut</span>
                 </div>
             </div>
         </section>
 
         <!-- ===== CONTACT SECTION (PORTAL CORE) ===== -->
         <section class="contact section" id="contact">
-            <h2 class="section-title">Dimensional Beacon / Message</h2>
+            <h2 class="section-title">Beacon Signal Transmission</h2>
 
             <div class="contact__container bd-grid">
-                <form action="#" class="contact__form" onsubmit="event.preventDefault();">
+                <form action="#" class="glass-card contact__form" onsubmit="event.preventDefault();">
                     <div class="contact__field-group">
-                        <label class="contact__label">Player Name</label>
+                        <label class="contact__label">Player Username</label>
                         <input type="text" placeholder="Steve / Alex" class="contact__input" required>
                     </div>
                     <div class="contact__field-group">
-                        <label class="contact__label">Sender Frequency (Email)</label>
+                        <label class="contact__label">Transmission Frequency (Email)</label>
                         <input type="email" placeholder="player@domain.com" class="contact__input" required>
                     </div>
                     <div class="contact__field-group">
                         <label class="contact__label">Transmission Message</label>
-                        <textarea placeholder="Write your message here..." class="contact__input" rows="6" required></textarea>
+                        <textarea placeholder="Write your transmission..." class="contact__input" required></textarea>
                     </div>
-                    <button type="submit" class="contact__button button">Cast Transmission</button>
+                    <button type="submit" class="contact__button button"><i class='bx bxs-paper-plane'></i> Send Signal</button>
                 </form>
             </div>
         </section>
@@ -848,18 +859,18 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <p class="footer__title">Arpan</p>
+        <h3 class="footer__title">ARPAN</h3>
         <div class="footer__social">
             <a href="https://discord.com/channels/@4rpxn.01" class="footer__icon" target="_blank"><i class='bx bxl-discord'></i></a>
             <a href="https://www.instagram.com/sheikh_4rpn/" class="footer__icon" target="_blank"><i class='bx bxl-instagram'></i></a>
             <a href="https://www.youtube.com/@4rpxn" class="footer__icon" target="_blank"><i class='bx bxl-youtube'></i></a>
         </div>
-        <p class="footer__copy">&#169; Arpan. All rights reserved.</p>
+        <p class="footer__copy">&#169; Arpan's Realm. All Rights Reserved.</p>
     </footer>
 
-    <!-- ===== 3D MINECRAFT ANIMATION & SKIN ENGINE ===== -->
+    <!-- ===== ENHANCED THREE.JS 3D ENGINE ===== -->
     <script>
-        /* Drawer Navigation */
+        /* Mobile Navigation Drawer */
         const showMenu = (toggleId, navId) => {
             const toggle = document.getElementById(toggleId),
                   nav = document.getElementById(navId);
@@ -879,7 +890,7 @@
         }
         navLink.forEach(n => n.addEventListener('click', linkAction));
 
-        /* Active Link Section Highlighter */
+        /* Active Scroll Section Highlighter */
         const sections = document.querySelectorAll('section[id]');
         function scrollActive(){
             const scrollY = window.pageYOffset;
@@ -888,64 +899,52 @@
                 const sectionHeight = current.offsetHeight;
                 const sectionTop = current.offsetTop - 150;
                 const sectionId = current.getAttribute('id');
+                const link = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
 
-                if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link');
-                } else {
-                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link');
+                if(link) {
+                    if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+                        link.classList.add('active-link');
+                    } else {
+                        link.classList.remove('active-link');
+                    }
                 }
             });
         }
         window.addEventListener('scroll', scrollActive);
 
-        /* ===== THREE.JS MINECRAFT 3D DIMENSIONAL ENGINE ===== */
+        /* ===== THREE.JS 3D ENVIRONMENT & PARTICLES ===== */
         let scene, camera, renderer;
         let playerGroup, head, torso, rightArm, leftArm, rightLeg, leftLeg;
-        let treeGroup, caveGroup, netherGroup, endGroup;
-        let portalBlock;
+        let particlesMesh;
 
         const canvas = document.getElementById('world-canvas');
 
-        // Dynamically create a Canvas Texture based on the User's Skin File layout
-        function generateSkinTexture() {
+        function createSkinTexture() {
             const canvasSkin = document.createElement('canvas');
             canvasSkin.width = 64;
             canvasSkin.height = 64;
             const ctx = canvasSkin.getContext('2d');
 
-            // Default dark skin tone base
-            ctx.fillStyle = '#7a4b2a';
+            // Skin tone
+            ctx.fillStyle = '#6e4327';
             ctx.fillRect(0, 0, 64, 64);
 
-            // White Shirt (Torso + Arms)
-            ctx.fillStyle = '#f0f0f0';
-            ctx.fillRect(16, 20, 24, 12); // torso front/back/sides
-            ctx.fillRect(40, 20, 16, 12); // arm shirt
+            // Jacket / Top
+            ctx.fillStyle = '#1e1e24';
+            ctx.fillRect(16, 16, 24, 16);
+            ctx.fillStyle = '#ffaa00';
+            ctx.fillRect(20, 20, 16, 2);
 
-            // Dark Trousers / Pants
-            ctx.fillStyle = '#1a202c';
-            ctx.fillRect(0, 20, 16, 12);  // leg pants
-            ctx.fillRect(16, 32, 32, 32);
+            // Pants
+            ctx.fillStyle = '#111116';
+            ctx.fillRect(0, 32, 32, 32);
 
-            // Gold Chain Detail
-            ctx.fillStyle = '#ffcc00';
-            ctx.fillRect(20, 20, 8, 2);
-
-            // Dark Afro Hair / Head Base
-            ctx.fillStyle = '#111111';
-            ctx.fillRect(0, 0, 32, 16);  // head top/hair
-            
-            // Face features
-            ctx.fillStyle = '#7a4b2a';
-            ctx.fillRect(8, 8, 16, 8);   // face front
+            // Eyes & Hair
+            ctx.fillStyle = '#0a0a0c';
+            ctx.fillRect(0, 0, 32, 12);
             ctx.fillStyle = '#ffffff';
-            ctx.fillRect(10, 10, 4, 2);  // eye L
-            ctx.fillRect(18, 10, 4, 2);  // eye R
-            ctx.fillStyle = '#3a1f0d';
-            ctx.fillRect(12, 10, 2, 2);  // pupil L
-            ctx.fillRect(20, 10, 2, 2);  // pupil R
-            ctx.fillStyle = '#221105';
-            ctx.fillRect(12, 13, 8, 2);  // mustache
+            ctx.fillRect(8, 10, 4, 2);
+            ctx.fillRect(20, 10, 4, 2);
 
             const texture = new THREE.CanvasTexture(canvasSkin);
             texture.magFilter = THREE.NearestFilter;
@@ -955,223 +954,102 @@
 
         function init3DWorld() {
             scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x0c0914, 0.035);
+            scene.fog = new THREE.FogExp2(0x08080c, 0.04);
 
             camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 2, 9);
+            camera.position.set(0, 1.5, 8);
 
             renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-            scene.add(ambientLight);
+            // Ambient & Point Lighting
+            const ambient = new THREE.AmbientLight(0xffffff, 0.85);
+            scene.add(ambient);
 
-            const dirLight = new THREE.DirectionalLight(0xfffaed, 0.8);
-            dirLight.position.set(10, 20, 15);
-            scene.add(dirLight);
+            const pointLight = new THREE.PointLight(0xffaa00, 2, 20);
+            pointLight.position.set(2, 3, 4);
+            scene.add(pointLight);
 
-            const skinTexture = generateSkinTexture();
-            const skinMaterial = new THREE.MeshLambertMaterial({ map: skinTexture });
-
-            // Construct 3D Minecraft Character (Player)
+            // Create Player Model
+            const skinMat = new THREE.MeshLambertMaterial({ map: createSkinTexture() });
             playerGroup = new THREE.Group();
 
-            // Head (8x8x8 units)
-            const headGeo = new THREE.BoxGeometry(1, 1, 1);
-            head = new THREE.Mesh(headGeo, skinMaterial);
-            head.position.y = 1.25;
+            head = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.1, 1.1), skinMat);
+            head.position.y = 1.3;
             playerGroup.add(head);
 
-            // Torso (8x12x4 units)
-            const torsoGeo = new THREE.BoxGeometry(1, 1.5, 0.5);
-            torso = new THREE.Mesh(torsoGeo, skinMaterial);
-            torso.position.y = 0;
+            torso = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.5, 0.6), skinMat);
             playerGroup.add(torso);
 
-            // Right Arm
-            const armGeo = new THREE.BoxGeometry(0.4, 1.5, 0.4);
-            rightArm = new THREE.Mesh(armGeo, skinMaterial);
-            rightArm.position.set(-0.75, 0, 0);
+            const armGeo = new THREE.BoxGeometry(0.4, 1.4, 0.4);
+            rightArm = new THREE.Mesh(armGeo, skinMat);
+            rightArm.position.set(-0.8, 0, 0);
             playerGroup.add(rightArm);
 
-            // Left Arm
-            leftArm = new THREE.Mesh(armGeo, skinMaterial);
-            leftArm.position.set(0.75, 0, 0);
+            leftArm = new THREE.Mesh(armGeo, skinMat);
+            leftArm.position.set(0.8, 0, 0);
             playerGroup.add(leftArm);
 
-            // Right Leg
-            const legGeo = new THREE.BoxGeometry(0.4, 1.5, 0.4);
-            rightLeg = new THREE.Mesh(legGeo, skinMaterial);
-            rightLeg.position.set(-0.25, -1.5, 0);
+            const legGeo = new THREE.BoxGeometry(0.45, 1.4, 0.45);
+            rightLeg = new THREE.Mesh(legGeo, skinMat);
+            rightLeg.position.set(-0.3, -1.4, 0);
             playerGroup.add(rightLeg);
 
-            // Left Leg
-            leftLeg = new THREE.Mesh(legGeo, skinMaterial);
-            leftLeg.position.set(0.25, -1.5, 0);
+            leftLeg = new THREE.Mesh(legGeo, skinMat);
+            leftLeg.position.set(0.3, -1.4, 0);
             playerGroup.add(leftLeg);
 
-            playerGroup.position.set(2, -0.5, 2);
+            playerGroup.position.set(2.2, -0.5, 2);
             scene.add(playerGroup);
 
-            // ===== BIOMES & ENVIRONMENT BUILD =====
-            buildOverworldTree();
-            buildCaveEnvironment();
-            buildNetherFortress();
-            buildTheEndRealm();
-        }
+            // Floating Minecraft Block Atmosphere Particles
+            const particlesGeo = new THREE.BufferGeometry();
+            const count = 250;
+            const posArray = new Float32Array(count * 3);
 
-        // 1. Overworld Sakura / Bloom Tree Canopy
-        function buildOverworldTree() {
-            treeGroup = new THREE.Group();
-            
-            // Grass / Dirt Ground
-            const grassGeo = new THREE.BoxGeometry(20, 1, 20);
-            const grassMat = new THREE.MeshLambertMaterial({ color: 0x4a7522 });
-            const grass = new THREE.Mesh(grassGeo, grassMat);
-            grass.position.y = -2.75;
-            treeGroup.add(grass);
-
-            // Wood Trunk
-            const logGeo = new THREE.BoxGeometry(1, 6, 1);
-            const logMat = new THREE.MeshLambertMaterial({ color: 0x573d26 });
-            const trunk = new THREE.Mesh(logGeo, logMat);
-            trunk.position.set(-3, 0.25, -2);
-            treeGroup.add(trunk);
-
-            // Blossom Leaves
-            const leafMat = new THREE.MeshLambertMaterial({ color: 0xffaacc });
-            for (let x = -2; x <= 2; x++) {
-                for (let y = 0; y <= 2; y++) {
-                    for (let z = -2; z <= 2; z++) {
-                        if (Math.random() > 0.25) {
-                            const leaf = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), leafMat);
-                            leaf.position.set(-3 + x, 3 + y, -2 + z);
-                            treeGroup.add(leaf);
-                        }
-                    }
-                }
-            }
-            scene.add(treeGroup);
-        }
-
-        // 2. Deep Caves & Mines
-        function buildCaveEnvironment() {
-            caveGroup = new THREE.Group();
-            caveGroup.position.y = -25; // Placed further below for smooth scroll down
-
-            const stoneMat = new THREE.MeshLambertMaterial({ color: 0x333333 });
-            const oreMat = new THREE.MeshLambertMaterial({ color: 0x55ffff }); // Diamond ore glow
-
-            for (let i = 0; i < 40; i++) {
-                const block = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), Math.random() > 0.8 ? oreMat : stoneMat);
-                block.position.set(
-                    (Math.random() - 0.5) * 16,
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 12
-                );
-                caveGroup.add(block);
-            }
-            scene.add(caveGroup);
-        }
-
-        // 3. Nether Fortress Area
-        function buildNetherFortress() {
-            netherGroup = new THREE.Group();
-            netherGroup.position.y = -50;
-
-            const netherBrickMat = new THREE.MeshLambertMaterial({ color: 0x300808 });
-            const lavaMat = new THREE.MeshBasicMaterial({ color: 0xff4400 });
-
-            // Nether Fortress Pillars
-            for (let i = -3; i <= 3; i += 3) {
-                const pillar = new THREE.Mesh(new THREE.BoxGeometry(1.5, 12, 1.5), netherBrickMat);
-                pillar.position.set(i * 2, 0, -5);
-                netherGroup.add(pillar);
+            for(let i = 0; i < count * 3; i += 3) {
+                posArray[i] = (Math.random() - 0.5) * 20;
+                posArray[i+1] = (Math.random() - 0.5) * 40;
+                posArray[i+2] = (Math.random() - 0.5) * 20;
             }
 
-            // Lava Pool Ground
-            const lava = new THREE.Mesh(new THREE.BoxGeometry(20, 0.5, 20), lavaMat);
-            lava.position.y = -4;
-            netherGroup.add(lava);
+            particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const particlesMat = new THREE.PointsMaterial({
+                size: 0.12,
+                color: 0xffaa00,
+                transparent: true,
+                opacity: 0.7
+            });
 
-            // Glowing Nether Portal Frame
-            const obsidianMat = new THREE.MeshLambertMaterial({ color: 0x11051c });
-            const portalFrame = new THREE.Group();
-            for(let x=-2; x<=2; x++){
-                for(let y=0; y<=5; y++){
-                    if(x === -2 || x === 2 || y === 0 || y === 5){
-                        const obs = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), obsidianMat);
-                        obs.position.set(x, y, 0);
-                        portalFrame.add(obs);
-                    }
-                }
-            }
-            portalBlock = new THREE.Mesh(new THREE.PlaneGeometry(3, 4), new THREE.MeshBasicMaterial({ color: 0x8b00ff, side: THREE.DoubleSide, transparent: true, opacity: 0.85 }));
-            portalBlock.position.set(0, 2.5, 0);
-            portalFrame.add(portalBlock);
-            portalFrame.position.set(0, -2, -1);
-            netherGroup.add(portalFrame);
-
-            scene.add(netherGroup);
+            particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+            scene.add(particlesMesh);
         }
 
-        // 4. The End & Dragon Arena
-        function buildTheEndRealm() {
-            endGroup = new THREE.Group();
-            endGroup.position.y = -75;
-
-            const endStoneMat = new THREE.MeshLambertMaterial({ color: 0xded69c });
-            const obsidianMat = new THREE.MeshLambertMaterial({ color: 0x0f0a17 });
-
-            // Floating End Island
-            const island = new THREE.Mesh(new THREE.BoxGeometry(16, 3, 16), endStoneMat);
-            island.position.y = -3;
-            endGroup.add(island);
-
-            // Obsidian Pillar
-            const obsidianPillar = new THREE.Mesh(new THREE.BoxGeometry(2, 14, 2), obsidianMat);
-            obsidianPillar.position.set(-5, 3, -4);
-            endGroup.add(obsidianPillar);
-
-            scene.add(endGroup);
-        }
-
-        // ===== ANIMATION & SCROLL INTERACTION LOOP =====
-        let clock = new THREE.Clock();
+        const clock = new THREE.Clock();
 
         function animateWorld() {
             requestAnimationFrame(animateWorld);
             const elapsedTime = clock.getElapsedTime();
 
-            // Calculate Scroll Percentage
+            // Smooth Scroll tracking
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             const scrollFraction = window.scrollY / (maxScroll || 1);
 
-            // Move camera down smoothly matching document scroll
-            const targetCamY = 2 - (scrollFraction * 75);
-            camera.position.y += (targetCamY - camera.position.y) * 0.08;
+            camera.position.y = 1.5 - (scrollFraction * 35);
+            playerGroup.position.y = camera.position.y - 2;
 
-            // Update Player Y position with smooth offset & continuous mining loop
-            playerGroup.position.y = camera.position.y - 2.5;
+            // Character Animations
+            rightArm.rotation.x = Math.sin(elapsedTime * 4) * 0.4;
+            leftArm.rotation.x = -Math.sin(elapsedTime * 4) * 0.4;
+            rightLeg.rotation.x = -Math.sin(elapsedTime * 3) * 0.25;
+            leftLeg.rotation.x = Math.sin(elapsedTime * 3) * 0.25;
+            head.rotation.y = Math.sin(elapsedTime * 1.5) * 0.3;
 
-            // Character Limb Animation (Swing Arms & Legs like digging/placing blocks)
-            rightArm.rotation.x = Math.sin(elapsedTime * 6) * 0.6;
-            leftArm.rotation.x = -Math.sin(elapsedTime * 6) * 0.6;
-            rightLeg.rotation.x = -Math.sin(elapsedTime * 4) * 0.3;
-            leftLeg.rotation.x = Math.sin(elapsedTime * 4) * 0.3;
-            head.rotation.y = Math.sin(elapsedTime * 2) * 0.25;
-
-            // Portal Pulse Effect
-            if (portalBlock) {
-                portalBlock.material.opacity = 0.7 + Math.sin(elapsedTime * 5) * 0.25;
+            // Particle drift
+            if (particlesMesh) {
+                particlesMesh.rotation.y = elapsedTime * 0.03;
             }
-
-            // Subtle rotation of scene elements
-            treeGroup.rotation.y = Math.sin(elapsedTime * 0.2) * 0.1;
-            caveGroup.rotation.y = elapsedTime * 0.05;
-            endGroup.rotation.y = elapsedTime * 0.08;
 
             renderer.render(scene, camera);
         }
