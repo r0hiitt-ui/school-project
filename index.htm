@@ -1,227 +1,663 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="edt.css">
-
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-
-        <title>Portfolio website complete</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Arpan</a>
-                </div>
-
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
-
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Arpan</span><br>yes "The G.O.A.T"</h1>
-
-                    <style>
-                        .button:hover {
-                            background-color: #555; /* Change this to your desired hover color */
-                            color: white; /* Change this to your desired text color on hover */
-                            transition: background-color 0.3s ease; /* Smooth transition */
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arpan — Multimedia Specialist & Cyber Creator</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonCyan: '#00f3ff',
+                        neonPurple: '#b026ff',
+                        neonPink: '#ff007f',
+                        cyberDark: '#0a0d14',
+                        cyberCard: 'rgba(18, 24, 38, 0.7)',
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite alternate',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 243, 255, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(176, 38, 255, 0.6)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         }
-                    </style>
-                    
-                    <a href="#" class="button">Hire me</a>
-                </div>
+                    }
+                }
+            }
+        }
+    </script>
 
-                <div class="home__social">
-                    <a href="https://www.instagram.com/sheikh_4rpn/" class="home__social-icon" target="_blank"><i class='bx bxl-instagram'></i></a>
-                    <a href="https://www.youtube.com/@4rpxn" class="home__social-icon" target="_blank"><i class='bx bxl-youtube'></i></a>
-                    <a href="https://discord.com/channels/@4rpxn.01" class="home__social-icon" target="_blank"><i class='bx bxl-discord'></i></a>
-                </div>
-                
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="110" width: 400px href="arpankk.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
+    <!-- BoxIcons -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0d14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
 
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="arpany.jpg" alt="">
-                    </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">I'am Arpan</h2>
-                        <p class="about__text">A digital native operating at the intersection of high-concept design and raw tech proficiency, I architect immersive visual experiences that hit different. From high-octane freestyle video and photo edits dialed into cyberpunk perfection to slick, ultra-responsive web interfaces and high-impact pitch decks, my entire workflow is built around pushing aesthetic boundaries. I don't just create content—I craft digital narratives with main-character energy, turning raw pixels, code, and creative vision into clean, elite-tier deliverables. Driven by relentless curiosity, technical precision, and pure artistic flow, I'm constantly upgrading my stack to transform abstract ideas into unforgettable, future-ready realities that completely override the baseline.</p>           
-                    </div>                                   
-                </div>
-            </section>
+        /* Cyber grid background effect */
+        .bg-cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
 
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
+        /* Glassmorphism card utility */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 243, 255, 0.3);
+        }
 
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">My Skills</h2>
-                        <p class="skills__text">As a versatile multimedia specialist, I possess strong skills in video and photo editing, PowerPoint presentation creation, and graphic design. My creative flair and technical proficiency enable me to produce visually captivating and impactful content tailored to diverse needs. Whether it's editing videos, enhancing photos, crafting compelling presentations, or designing stunning graphics, I am dedicated to achieving excellence and exceeding expectations.</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-adobe skills__icon'></i>
-                                <span class="skills__name">After Effect</span>
-                            </div>
-                            <div class="skills__bar skills__html">
+        /* Text Gradient Effect */
+        .text-gradient {
+            background: linear-gradient(135deg, #00f3ff 0%, #b026ff 50%, #ff007f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-                            </div>
-                            <div>
-                                <span class="skills__percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-photoshop skills__icon'></i>
-                                <span class="skills__name">photoshop</span>
-                            </div>
-                            <div class="skills__bar skills__css">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-visual studio code skills__icon' ></i>
-                                <span class="skills__name">vs code</span>
-                            </div>
-                            <div class="skills__bar skills__js">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">65%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">UX/UI</span>
-                            </div>
-                            <div class="skills__bar skills__ux">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>              
-                        <img src="ig.jpg" alt="" class="skills__img">
-                    </div>
-                </div>
-            </section>
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-cyberDark text-slate-100 font-sans antialiased selection:bg-neonCyan selection:text-black min-h-screen bg-cyber-grid relative overflow-x-hidden">
 
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Work</h2>
+    <!-- Background glowing ambient lights -->
+    <div class="fixed top-1/4 -left-32 w-96 h-96 bg-neonCyan/15 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-1/4 -right-32 w-96 h-96 bg-neonPurple/15 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
-                <div class="work__container bd-grid">
-                    <a href="" class="work__img">
-                        <img src="spider.jpg" alt="" width="300" height="400">
-                    </a>
-                    <video width="360" height="480" autoplay muted loop>
-                        <source src="ghjk.mp4" type="video/mp4">
-                        
-                    </video>
-                    </a>
-                    
-                   
-                        <video width="480" height="270" autoplay muted loop>
-                            <source src="Untitled video - Made with Clipchamp.mp4" type="video/mp4">
-                            
-                        </video>
-                    </a>
-                  
-                        <video width="360" height="480" autoplay muted loop>
-                            <source src="edit.mp4" type="video/mp4">
-                            
-                        </video>
-                    </a>
-                     </a>
-                  
-                        <video width="480" height="270" autoplay muted loop>
-                            <source src="final.mp4" type="video/mp4">
-                            
-                        </video>
-                    </a> 
-                    
-                
-                </div>
-            </section>
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed top-20 right-5 z-50 transform translate-x-full opacity-0 transition-all duration-300 glass-card border-neonCyan/50 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none">
+        <i class='bx bx-check-circle text-neonCyan text-2xl'></i>
+        <div>
+            <h4 class="font-bold text-sm text-neonCyan">Transmission Sent!</h4>
+            <p id="toast-msg" class="text-xs text-slate-300">Your message has reached Arpan's terminal.</p>
+        </div>
+    </div>
 
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
+    <!-- ===== HEADER / NAVBAR ===== -->
+    <header class="fixed top-0 left-0 w-full z-40 glass-card border-b border-slate-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-2 group">
+                <span class="text-2xl font-extrabold tracking-wider text-white group-hover:text-neonCyan transition-colors">
+                    ARPAN<span class="text-neonCyan">.</span>
+                </span>
+                <span class="text-[10px] uppercase tracking-widest bg-neonPurple/20 text-neonPurple px-2 py-0.5 rounded border border-neonPurple/30 font-mono">
+                    GOAT
+                </span>
+            </a>
 
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="summit" class="contact__button button">
-                    </form>
-                </div>
-            </section>
-        </main>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-sm font-medium text-slate-300 hover:text-neonCyan transition-colors relative py-1">Home</a>
+                <a href="#about" class="nav-link text-sm font-medium text-slate-300 hover:text-neonCyan transition-colors relative py-1">About</a>
+                <a href="#skills" class="nav-link text-sm font-medium text-slate-300 hover:text-neonCyan transition-colors relative py-1">Skills</a>
+                <a href="#work" class="nav-link text-sm font-medium text-slate-300 hover:text-neonCyan transition-colors relative py-1">Work</a>
+                <a href="#contact" class="nav-link text-sm font-medium text-slate-300 hover:text-neonCyan transition-colors relative py-1">Contact</a>
+            </nav>
 
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Arpan</p>
-            <div class="footer__social">
-                <a href="#" class="footer__icon"><i class='bx bxl-discord' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-youtube' ></i></a>
+            <!-- Hire Me Action CTA -->
+            <div class="hidden md:block">
+                <a href="#contact" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold text-white rounded-lg group bg-gradient-to-br from-neonCyan to-neonPurple group-hover:from-neonCyan group-hover:to-neonPink hover:shadow-[0_0_20px_rgba(0,243,255,0.4)] transition-all">
+                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-md group-hover:bg-opacity-0">
+                        Work With Me
+                    </span>
+                </a>
             </div>
-            <p class="footer__copy">&#169; Arpan. All rigths reserved</p>
-        </footer>
 
+            <!-- Mobile Hamburger Toggle -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-neonCyan text-3xl focus:outline-none p-2 rounded-lg" aria-label="Toggle navigation">
+                <i class='bx bx-menu' id="menu-icon"></i>
+            </button>
+        </div>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-slate-800 px-6 py-6 space-y-4">
+            <a href="#home" class="mobile-nav-link block text-lg font-medium text-slate-200 hover:text-neonCyan">Home</a>
+            <a href="#about" class="mobile-nav-link block text-lg font-medium text-slate-200 hover:text-neonCyan">About</a>
+            <a href="#skills" class="mobile-nav-link block text-lg font-medium text-slate-200 hover:text-neonCyan">Skills</a>
+            <a href="#work" class="mobile-nav-link block text-lg font-medium text-slate-200 hover:text-neonCyan">Work</a>
+            <a href="#contact" class="mobile-nav-link block text-lg font-medium text-slate-200 hover:text-neonCyan">Contact</a>
+            <div class="pt-4 border-t border-slate-800">
+                <a href="#contact" class="mobile-nav-link block text-center w-full py-3 bg-gradient-to-r from-neonCyan to-neonPurple text-black font-bold rounded-xl shadow-lg">
+                    Hire Me Now
+                </a>
+            </div>
+        </div>
+    </header>
 
-        <!--===== MAIN JS =====-->
-        <script src="edt.js"></script>
-    </body>
+    <main class="relative z-10 pt-20 sm:pt-24">
+        
+        <!-- ===== HERO SECTION ===== -->
+        <section id="home" class="min-h-[88vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-12 sm:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                
+                <!-- Left Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full glass-card border-neonCyan/30 text-neonCyan text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-neonCyan animate-ping"></span>
+                        <span>AVAILABLE FOR FREELANCE & EDITS</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                        Hi, I'm <span class="text-gradient">Arpan</span>
+                        <span class="block text-xl sm:text-3xl font-medium text-slate-400 mt-2">
+                            Yes, <span class="text-neonPink font-bold">"The G.O.A.T"</span> ⚡
+                        </span>
+                    </h1>
+
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Cyberpunk Video Editor • Photo FX Artist • UI Visual Designer. Crafting elite visual edits, hyper-engaging videos, and next-gen designs that dominate feed timelines.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-neonCyan via-teal-300 to-neonPurple hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] transition-all transform hover:-translate-y-0.5 text-center">
+                            Hire Me Now
+                        </a>
+                        <a href="#work" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-slate-200 glass-card hover:bg-slate-800/80 hover:text-white hover:border-neonCyan/40 transition-all text-center flex items-center justify-center gap-2">
+                            <span>Explore Portfolio</span>
+                            <i class='bx bx-right-arrow-alt text-xl'></i>
+                        </a>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="pt-6 flex items-center justify-center lg:justify-start space-x-4">
+                        <span class="text-xs uppercase font-mono tracking-widest text-slate-500 mr-2">Connect:</span>
+                        <a href="https://www.instagram.com/sheikh_4rpn/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-neonPink hover:border-neonPink/50 transition-all hover:scale-110">
+                            <i class='bx bxl-instagram text-xl'></i>
+                        </a>
+                        <a href="https://www.youtube.com/@4rpxn" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-red-500 hover:border-red-500/50 transition-all hover:scale-110">
+                            <i class='bx bxl-youtube text-xl'></i>
+                        </a>
+                        <a href="https://discord.com/channels/@4rpxn.01" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:border-indigo-400/50 transition-all hover:scale-110">
+                            <i class='bx bxl-discord text-xl'></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Cyber Image Frame -->
+                <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+                        <!-- Glowing backdrop ring -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-neonCyan via-neonPurple to-neonPink blur-2xl opacity-40 animate-pulse-glow"></div>
+                        
+                        <!-- Outer Frame -->
+                        <div class="relative w-full h-full rounded-3xl p-1 bg-gradient-to-b from-neonCyan/60 via-slate-800 to-neonPurple/60 shadow-2xl glass-card">
+                            <div class="w-full h-full rounded-[22px] overflow-hidden bg-slate-950 relative group">
+                                <img src="arpankk.png" 
+                                     onerror="this.src='https://placehold.co/600x600/0f172a/00f3ff?text=Arpan+The+GOAT';" 
+                                     alt="Arpan Profile Photo" 
+                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+                                
+                                <!-- Floating Overlay Badge -->
+                                <div class="absolute bottom-4 left-4 right-4 p-3 rounded-xl glass-card border border-white/10 flex items-center justify-between">
+                                    <div>
+                                        <p class="text-xs font-bold text-white">ARPAN</p>
+                                        <p class="text-[10px] text-slate-400">Content Creator & VFX</p>
+                                    </div>
+                                    <span class="px-2 py-1 bg-neonCyan/20 text-neonCyan text-[10px] rounded font-mono font-bold">100% LIT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    About <span class="text-gradient">Me</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPurple mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Avatar Image Container -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-neonPurple to-neonCyan rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+                        <div class="relative rounded-2xl overflow-hidden glass-card max-w-sm">
+                            <img src="arpany.jpg" 
+                                 onerror="this.src='https://placehold.co/600x700/0f172a/b026ff?text=Arpan+Editing';" 
+                                 alt="Arpan Creator Avatar" 
+                                 class="w-full h-auto object-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-6 glass-card p-6 sm:p-8 rounded-3xl border border-slate-800">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white">
+                        Digital Native Operating At The <span class="text-neonCyan">Next Level</span>
+                    </h3>
+
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        Operating at the intersection of high-concept graphic design, advanced video editing, and raw tech proficiency. I architect immersive visual experiences that hit different. From high-octane freestyle video and photo edits dialed into cyberpunk perfection to slick, ultra-responsive web interfaces and high-impact decks—my entire workflow is built around pushing aesthetic boundaries.
+                    </p>
+
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        I don't just edit content—I craft digital narratives with main-character energy, turning raw pixels, code, and creative vision into clean, elite-tier deliverables. Always upgrading my stack to transform abstract ideas into unforgettable, future-ready realities.
+                    </p>
+
+                    <!-- Stats Badges Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                            <h4 class="text-2xl font-bold text-neonCyan">99+</h4>
+                            <p class="text-xs text-slate-400 mt-1">Edits Completed</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                            <h4 class="text-2xl font-bold text-neonPurple">100%</h4>
+                            <p class="text-xs text-slate-400 mt-1">Main Character Vibe</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center col-span-2 sm:col-span-1">
+                            <h4 class="text-2xl font-bold text-neonPink">24/7</h4>
+                            <p class="text-xs text-slate-400 mt-1">Creative Flow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS SECTION ===== -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    Technical <span class="text-gradient">Skills</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPurple mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Skills List -->
+                <div class="lg:col-span-7 space-y-6">
+                    <p class="text-slate-300 text-base leading-relaxed mb-6">
+                        Armed with industry-standard digital tools for motion design, photo manipulation, and visual storytelling:
+                    </p>
+
+                    <!-- Skill Bar Item 1 -->
+                    <div class="glass-card p-4 rounded-2xl space-y-2 border border-slate-800">
+                        <div class="flex justify-between items-center text-sm font-semibold">
+                            <span class="flex items-center space-x-2 text-white">
+                                <i class='bx bxl-adobe text-neonPink text-xl'></i>
+                                <span>After Effects & Video FX</span>
+                            </span>
+                            <span class="text-neonCyan font-mono">95%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-neonCyan to-neonPurple h-full rounded-full transition-all duration-1000" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Bar Item 2 -->
+                    <div class="glass-card p-4 rounded-2xl space-y-2 border border-slate-800">
+                        <div class="flex justify-between items-center text-sm font-semibold">
+                            <span class="flex items-center space-x-2 text-white">
+                                <i class='bx bxl-photoshop text-blue-400 text-xl'></i>
+                                <span>Adobe Photoshop & Graphics</span>
+                            </span>
+                            <span class="text-neonCyan font-mono">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-blue-500 to-neonCyan h-full rounded-full transition-all duration-1000" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Bar Item 3 -->
+                    <div class="glass-card p-4 rounded-2xl space-y-2 border border-slate-800">
+                        <div class="flex justify-between items-center text-sm font-semibold">
+                            <span class="flex items-center space-x-2 text-white">
+                                <i class='bx bx-code-alt text-emerald-400 text-xl'></i>
+                                <span>VS Code & Web Development</span>
+                            </span>
+                            <span class="text-neonCyan font-mono">65%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-emerald-400 to-teal-300 h-full rounded-full transition-all duration-1000" style="width: 65%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Bar Item 4 -->
+                    <div class="glass-card p-4 rounded-2xl space-y-2 border border-slate-800">
+                        <div class="flex justify-between items-center text-sm font-semibold">
+                            <span class="flex items-center space-x-2 text-white">
+                                <i class='bx bxs-paint text-neonPurple text-xl'></i>
+                                <span>UI / UX Design & Layouts</span>
+                            </span>
+                            <span class="text-neonCyan font-mono">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-neonPurple to-neonPink h-full rounded-full transition-all duration-1000" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Feature Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="glass-card rounded-3xl p-4 border border-slate-800 overflow-hidden relative group max-w-md w-full">
+                        <img src="ig.jpg" 
+                             onerror="this.src='https://placehold.co/600x600/0f172a/00f3ff?text=Creative+Skills';" 
+                             alt="Skills Highlight Image" 
+                             class="w-full h-80 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500">
+                        <div class="mt-4 p-2 text-center">
+                            <h4 class="text-lg font-bold text-white">Creative & Visual Specialist</h4>
+                            <p class="text-xs text-slate-400 mt-1">High-impact edits, viral cuts, and futuristic graphic designs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WORK / PORTFOLIO SECTION ===== -->
+        <section id="work" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    Featured <span class="text-gradient">Work</span>
+                </h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">Check out my recent video edits, animations, and graphic art.</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPurple mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Work Item 1: Image -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 group hover:border-neonCyan/50 transition-all duration-300">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-slate-950">
+                        <img src="spider.jpg" 
+                             onerror="this.src='https://placehold.co/600x750/0f172a/00f3ff?text=Spider-Man+Poster';" 
+                             alt="Spider Artwork" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-2.5 py-1 bg-neonPink/20 text-neonPink text-xs font-mono font-bold rounded">GRAPHIC ART</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Spiderverse Graphic Poster</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Item 2: Video -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 group hover:border-neonCyan/50 transition-all duration-300">
+                    <div class="relative overflow-hidden aspect-[9/16] bg-slate-950">
+                        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+                            <source src="ghjk.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70 pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
+                            <span class="px-2.5 py-1 bg-neonCyan/20 text-neonCyan text-xs font-mono font-bold rounded">REEL / SHORT</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Freestyle Anime Beat Cut</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Item 3: Video -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 group hover:border-neonCyan/50 transition-all duration-300">
+                    <div class="relative overflow-hidden aspect-video lg:aspect-[9/16] bg-slate-950">
+                        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+                            <source src="Untitled video - Made with Clipchamp.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70 pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
+                            <span class="px-2.5 py-1 bg-neonPurple/20 text-neonPurple text-xs font-mono font-bold rounded">AMV EDIT</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Cinematic VFX Cut</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Item 4: Video -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 group hover:border-neonCyan/50 transition-all duration-300">
+                    <div class="relative overflow-hidden aspect-[9/16] bg-slate-950">
+                        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+                            <source src="edit.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70 pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
+                            <span class="px-2.5 py-1 bg-emerald-400/20 text-emerald-400 text-xs font-mono font-bold rounded">SHORT FORM</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Cyber Motion Graphics</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Item 5: Video -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 group hover:border-neonCyan/50 transition-all duration-300 md:col-span-2 lg:col-span-2">
+                    <div class="relative overflow-hidden aspect-video bg-slate-950">
+                        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+                            <source src="final.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70 pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
+                            <span class="px-2.5 py-1 bg-amber-400/20 text-amber-400 text-xs font-mono font-bold rounded">FEATURE EDIT</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Full Showcase Master Render</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== WORKING CONTACT SECTION ===== -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    Get In <span class="text-gradient">Touch</span>
+                </h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">Got a project, edit request, or collab in mind? Let's build something crazy.</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPurple mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="glass-card p-6 sm:p-10 rounded-3xl border border-slate-800 relative">
+                
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="user_name" class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Your Name *</label>
+                            <input type="text" id="user_name" required placeholder="e.g. Alex Mercer" 
+                                   class="w-full bg-slate-950/80 border border-slate-800 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan rounded-xl p-3.5 text-white placeholder-slate-600 outline-none transition-all text-sm">
+                        </div>
+                        <div>
+                            <label for="user_email" class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Your Email *</label>
+                            <input type="email" id="user_email" required placeholder="alex@domain.com" 
+                                   class="w-full bg-slate-950/80 border border-slate-800 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan rounded-xl p-3.5 text-white placeholder-slate-600 outline-none transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="user_subject" class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Subject</label>
+                        <input type="text" id="user_subject" placeholder="Video Edit / Graphic Design / Project Request" 
+                               class="w-full bg-slate-950/80 border border-slate-800 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan rounded-xl p-3.5 text-white placeholder-slate-600 outline-none transition-all text-sm">
+                    </div>
+
+                    <div>
+                        <label for="user_message" class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Message *</label>
+                        <textarea id="user_message" required rows="5" placeholder="Tell me about your project or idea..." 
+                                  class="w-full bg-slate-950/80 border border-slate-800 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan rounded-xl p-3.5 text-white placeholder-slate-600 outline-none transition-all text-sm resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full py-4 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-neonCyan via-teal-300 to-neonPurple hover:shadow-[0_0_25px_rgba(0,243,255,0.5)] transition-all flex items-center justify-center space-x-2 text-base">
+                        <span>Send Message</span>
+                        <i class='bx bx-paper-plane text-xl'></i>
+                    </button>
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-slate-800/80 glass-card py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div>
+                <a href="#home" class="text-2xl font-extrabold tracking-wider text-white">
+                    ARPAN<span class="text-neonCyan">.</span>
+                </a>
+                <p class="text-xs text-slate-500 mt-1">Mastering the Digital Visual Wave</p>
+            </div>
+
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.instagram.com/sheikh_4rpn/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-neonPink text-2xl transition-colors">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+                <a href="https://www.youtube.com/@4rpxn" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-red-500 text-2xl transition-colors">
+                    <i class='bx bxl-youtube'></i>
+                </a>
+                <a href="https://discord.com/channels/@4rpxn.01" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 text-2xl transition-colors">
+                    <i class='bx bxl-discord'></i>
+                </a>
+            </div>
+
+            <p class="text-xs text-slate-600">
+                &copy; <span id="year"></span> Arpan. All rights reserved. Designed for Gen Z aesthetic.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMenu() {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('bx-menu');
+                menuIcon.classList.add('bx-x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('bx-x');
+                menuIcon.classList.add('bx-menu');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Contact Form Submission logic
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-msg');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('user_name').value.trim();
+            const email = document.getElementById('user_email').value.trim();
+            const message = document.getElementById('user_message').value.trim();
+
+            if (!name || !email || !message) {
+                showToast("Please fill in all required fields.", true);
+                return;
+            }
+
+            // Button loading animation
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Transmitting...</span> <i class='bx bx-loader-alt animate-spin text-xl'></i>`;
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                
+                // Show success toast
+                showToast(`Thanks ${name}! Your transmission has been sent to Arpan.`);
+                
+                // Clear form inputs
+                contactForm.reset();
+            }, 1200);
+        });
+
+        function showToast(msg, isError = false) {
+            toastMsg.textContent = msg;
+            
+            if(isError) {
+                toast.classList.remove('border-neonCyan/50');
+                toast.classList.add('border-red-500/50');
+            } else {
+                toast.classList.remove('border-red-500/50');
+                toast.classList.add('border-neonCyan/50');
+            }
+
+            toast.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-x-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-2xl', 'bg-slate-950/90');
+            } else {
+                navbar.classList.remove('shadow-2xl', 'bg-slate-950/90');
+            }
+        });
+    </script>
+</body>
 </html>
-
