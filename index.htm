@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arpan's Realm | Portfolio</title>
+    <title>Arpan's Realm | Creative Portfolio</title>
     <meta name="description" content="Arpan's Realm - portfolio of a digital creator: video editing, motion graphics, VFX and UI design.">
     <meta name="theme-color" content="#08080c">
     <meta name="color-scheme" content="dark">
-    <meta property="og:title" content="Arpan's Realm | Portfolio">
+    <meta property="og:title" content="Arpan's Realm | Creative Portfolio">
     <meta property="og:description" content="Video editing, motion graphics, VFX and UI design.">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2308080c'/%3E%3Crect x='2' y='2' width='12' height='12' fill='%23ffaa00'/%3E%3Crect x='4' y='4' width='8' height='8' fill='%234e8529'/%3E%3C/svg%3E">
@@ -571,6 +571,20 @@
         .work__card .mc-item-frame { width: 100%; }
         .work__card .mc-item-inner { aspect-ratio: 4 / 5; }
  
+        /* Videos keep their real shape (set from the file itself in JS); 16:9 is only the placeholder until it loads */
+        .work__container { align-items: start; }
+ 
+        .work__card .mc-item-inner--video {
+            aspect-ratio: 16 / 9;
+            max-height: 80vh;
+            background: #000;
+        }
+ 
+        .mc-item-inner--video video {
+            object-fit: contain;
+            object-position: center;
+        }
+ 
         .work__card-title {
             font-family: var(--font-pixel);
             font-size: 0.65rem;
@@ -935,7 +949,7 @@
  
                 <div class="glass-card work__card reveal" style="--d:.08s">
                     <div class="mc-item-frame">
-                        <div class="mc-item-inner">
+                        <div class="mc-item-inner mc-item-inner--video">
                             <video muted loop playsinline preload="metadata" aria-label="Short form edit">
                                 <source src="ghjk.mp4" type="video/mp4">
                             </video>
@@ -947,7 +961,7 @@
  
                 <div class="glass-card work__card reveal" style="--d:.16s">
                     <div class="mc-item-frame">
-                        <div class="mc-item-inner">
+                        <div class="mc-item-inner mc-item-inner--video">
                             <video muted loop playsinline preload="metadata" aria-label="Motion cut">
                                 <source src="Untitled%20video%20-%20Made%20with%20Clipchamp.mp4" type="video/mp4">
                             </video>
@@ -959,7 +973,7 @@
  
                 <div class="glass-card work__card reveal">
                     <div class="mc-item-frame">
-                        <div class="mc-item-inner">
+                        <div class="mc-item-inner mc-item-inner--video">
                             <video muted loop playsinline preload="metadata" aria-label="VFX edit">
                                 <source src="edit.mp4" type="video/mp4">
                             </video>
@@ -971,7 +985,7 @@
  
                 <div class="glass-card work__card reveal" style="--d:.08s">
                     <div class="mc-item-frame">
-                        <div class="mc-item-inner">
+                        <div class="mc-item-inner mc-item-inner--video">
                             <video muted loop playsinline preload="metadata" aria-label="Final cut">
                                 <source src="final.mp4" type="video/mp4">
                             </video>
@@ -1181,6 +1195,18 @@
  
         /* ---------- Videos: play only while visible, one sound at a time ---------- */
         var videos = $$('.work video');
+ 
+        // Match each frame to the video's real aspect ratio
+        videos.forEach(function (v) {
+            function fit() {
+                if (v.videoWidth && v.videoHeight) {
+                    v.parentNode.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+                }
+            }
+            if (v.readyState >= 1) fit();
+            v.addEventListener('loadedmetadata', fit);
+        });
+ 
         if ('IntersectionObserver' in window) {
             var vio = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
